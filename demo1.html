@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dati.enea.it | Portale Open Data ENEA (Bozza Istituzionale)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              enea: {
+                blue: '#1e3a8a',
+                light: '#3b82f6',
+                accent: '#0d9488',
+                dark: '#0f172a'
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'system-ui', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+
+      header .logo, footer .logo {width: 128px;}
+
+      #projects {
+        background-color: #180a2e;
+        background-image: url(https://dati.enea.it/base/images/welcome_img.jpg);
+        background-position: bottom right;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      #projects .header,
+      #projects .action {
+        background-color: #100d7680;
+        backdrop-filter: blur(20px);
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2rem;
+        border-radius: 1rem;
+      }
+
+      #projects .header {
+        max-width: 56rem;
+      }
+
+      #projects .action {
+        width: fit-content;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased">
+
+    <!-- Header Istituzionale -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          <div class="flex items-center space-x-4">
+            <!-- Logo ENEA -->
+            <div class="flex items-center space-x-3">
+              <svg version="1.1" class="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                   viewBox="0 0 1054.01 466.25" style="enable-background:new 0 0 1054.01 466.25;" xml:space="preserve">
+                <polygon style="fill:#005EB8;" points="751.35,310.72 836.37,310.72 724.82,182.96 724.82,362.42 492.9,362.42 492.46,361.91 336.19,182.96 
+                  336.19,362.42 103.83,362.42 103.83,103.83 258.99,103.83 258.99,155.56 155.56,155.56 155.56,207.83 233.14,207.83 233.14,259.56 
+                  155.56,259.56 155.56,310.72 284.46,310.72 284.46,103.83 335.75,103.83 336.19,104.34 492.46,283.29 492.46,103.83 647.62,103.83 
+                  647.62,155.56 544.19,155.56 544.19,207.83 621.44,207.83 621.44,259.56 544.19,259.56 544.19,310.72 673.09,310.72 673.09,103.83 
+                  724.38,103.83 724.82,104.34 905.03,310.72 950.18,362.42 751.35,362.42 "/>
+              </svg>
+              <div class="hidden md:block border-l border-slate-300 pl-4">
+                <p class="text-[11px] font-semibold text-slate-500 tracking-wider leading-tight">Agenzia nazionale per le nuove tecnologie,</p>
+                <p class="text-[11px] font-semibold text-slate-500 tracking-wider leading-tight">l'energia e lo sviluppo economico sostenibile</p>
+              </div>
+            </div>
+          </div>
+          <!-- Navigazione -->
+          <nav class="hidden lg:flex space-x-8 items-center">
+            <a href="#" class="text-sm font-medium text-blue-900 hover:text-blue-700 border-b-2 border-blue-900 pb-1">DATASET</a>
+            <a href="#" class="text-sm font-medium text-slate-600 hover:text-blue-900 pb-1">GRUPPI</a>
+            <a href="#" class="text-sm font-medium text-slate-600 hover:text-blue-900 pb-1">FORUM</a>
+            <a href="#" class="text-sm font-medium text-slate-600 hover:text-blue-900 pb-1">INFORMAZIONI</a>
+          </nav>
+          <!-- Lingua / Azione -->
+          <div class="flex items-center space-x-4">
+            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:text-blue-900">ITA</span>
+            <span class="text-xs text-slate-300">|</span>
+            <span class="text-xs font-medium text-slate-400 cursor-pointer hover:text-blue-900">ENG</span>
+            <a href="#" class="bg-blue-900 text-white hover:bg-blue-800 text-xs font-medium px-4 py-2 rounded transition-all">Accedi</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Search Module (Non-fullscreen) -->
+    <section class="relative bg-gradient-to-r from-blue-900 to-indigo-950 py-16 md:py-20 text-white overflow-hidden">   
+      <!-- Background Graphic pattern -->
+      <div class="absolute inset-0 opacity-10">
+        <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="1"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid)">
+        </svg>
+      </div>
+
+      <!-- Content -->
+      <div class="relative max-w-4xl mx-auto px-4 text-center">
+        <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-4">
+          Esplora il patrimonio dei dati aperti di ENEA
+        </h1>
+        <p class="text-blue-200 text-base md:text-lg max-w-2xl mx-auto mb-8">
+          Mettiamo a disposizione dati in formato aperto e riutilizzabile su energia, ambiente, clima e tecnologie sostenibili per promuovere la ricerca e la trasparenza.
+        </p>
+
+        <!-- Search Bar Card -->
+        <div class="bg-white rounded-xl shadow-xl p-2 max-w-2xl mx-auto flex flex-col sm:flex-row items-stretch sm:items-center">
+          <div class="flex-1 flex items-center px-3 py-2">
+            <svg class="h-5 w-5 text-slate-400 mr-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <input type="text" placeholder="Cerca i dati (es. emissioni, solare, rifiuti...)" class="w-full focus:outline-none text-slate-800 placeholder-slate-400 text-sm md:text-base" />
+          </div>
+          <button class="bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-sm md:text-base px-6 py-3 rounded-lg transition-all mt-2 sm:mt-0">
+            Cerca
+          </button>
+        </div>
+
+        <!-- Tag Popolari -->
+        <div class="mt-6 flex flex-wrap justify-center items-center gap-2.5 text-xs md:text-sm">
+          <span class="text-blue-200 font-medium">Tag popolari:</span>
+          <a href="#" class="bg-blue-900/50 hover:bg-blue-900/80 text-blue-100 border border-blue-700/60 px-2.5 py-1 rounded transition-all">amministrazione trasparente</a>
+          <a href="#" class="bg-blue-900/50 hover:bg-blue-900/80 text-blue-100 border border-blue-700/60 px-2.5 py-1 rounded transition-all">bilancio di genere</a>
+          <a href="#" class="bg-blue-900/50 hover:bg-blue-900/80 text-blue-100 border border-blue-700/60 px-2.5 py-1 rounded transition-all">cug</a>
+          <a href="#" class="bg-blue-900/50 hover:bg-blue-900/80 text-blue-100 border border-blue-700/60 px-2.5 py-1 rounded transition-all">efficienza energetica</a>
+        </div>
+      </div>
+    </section>
+
+    <main class="flex-grow">
+      
+      <!-- Sezione PROFILI (Inspired by open-science.it - "Sono un") -->
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center mb-10">
+          <h2 class="text-xs font-semibold uppercase tracking-wider text-blue-900 mb-2">Percorsi Personalizzati</h2>
+          <p class="text-3xl font-extrabold text-slate-900 tracking-tight">A chi ci rivolgiamo</p>
+          <p class="text-slate-500 mt-2 max-w-xl mx-auto text-sm">Seleziona il tuo profilo per esplorare risorse, guide e dataset scelti appositamente per le tue specifiche esigenze lavorative o informative.</p>
+        </div>
+
+        <!-- Profile Buttons (Above-the-fold design) -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+          <!-- Profile 1 -->
+          <button onclick="selectProfile('ricercatore')" id="btn-ricercatore" class="profile-btn active bg-white border-2 border-blue-600 shadow-md rounded-xl p-5 text-center flex flex-col items-center justify-center transition-all hover:border-blue-500 hover:shadow-lg group">
+            <div class="p-3 bg-blue-50 rounded-full text-blue-900 group-hover:scale-110 transition-transform mb-3">
+              <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+              </svg>
+            </div>
+            <span class="font-bold text-slate-900 text-sm md:text-base">Ricercatore</span>
+          </button>
+
+          <!-- Profile 2 -->
+          <button onclick="selectProfile('impresa')" id="btn-impresa" class="profile-btn bg-white border border-slate-200 shadow-sm rounded-xl p-5 text-center flex flex-col items-center justify-center transition-all hover:border-blue-500 hover:shadow-lg group">
+            <div class="p-3 bg-slate-50 rounded-full text-slate-600 group-hover:scale-110 transition-transform mb-3">
+              <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            </div>
+            <span class="font-bold text-slate-700 text-sm md:text-base">Impresa</span>
+          </button>
+
+          <!-- Profile 3 -->
+          <button onclick="selectProfile('cittadino')" id="btn-cittadino" class="profile-btn bg-white border border-slate-200 shadow-sm rounded-xl p-5 text-center flex flex-col items-center justify-center transition-all hover:border-blue-500 hover:shadow-lg group">
+            <div class="p-3 bg-slate-50 rounded-full text-slate-600 group-hover:scale-110 transition-transform mb-3">
+              <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+            <span class="font-bold text-slate-700 text-sm md:text-base">Cittadino</span>
+          </button>
+
+          <!-- Profile 4 -->
+          <button onclick="selectProfile('pa')" id="btn-pa" class="profile-btn bg-white border border-slate-200 shadow-sm rounded-xl p-5 text-center flex flex-col items-center justify-center transition-all hover:border-blue-500 hover:shadow-lg group">
+            <div class="p-3 bg-slate-50 rounded-full text-slate-600 group-hover:scale-110 transition-transform mb-3">
+              <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+              </svg>
+            </div>
+            <span class="font-bold text-slate-700 text-sm md:text-base">Pubblica Amministrazione</span>
+          </button>
+        </div>
+
+        <!-- Dynamic Content Box (Rich info tailored to the selected profile) -->
+        <div class="max-w-4xl mx-auto mt-8 bg-slate-100 border border-slate-200 rounded-xl p-6 md:p-8 shadow-sm">
+          <!-- Ricercatore Info -->
+          <div id="info-ricercatore" class="profile-info flex flex-col md:flex-row gap-8 items-start">
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-blue-900 mb-3 flex items-center">
+                <span class="mr-2">🔬</span> Risorse per ricercatori e accademici
+              </h3>
+              <p class="text-slate-600 text-sm md:text-base mb-4 leading-relaxed">
+                In quanto ricercatore, puoi accedere a dati scientifici grezzi, pubblicazioni open access e metadati strutturati per supportare i tuoi studi. Consulta i formati aperti (CSV, JSON, RDF) e cita i dataset tramite DOI dedicati.
+              </p>
+              <div class="space-y-2 text-sm">
+                <div class="flex items-center text-slate-700">
+                  <span class="text-blue-500 mr-2">✔</span> Citazioni standardizzate e metadati conformi a INSPIRE e Dublin Core.
+                </div>
+                <div class="flex items-center text-slate-700">
+                  <span class="text-blue-500 mr-2">✔</span> Integrazione semplificata con i repository di dati di ricerca europei.
+                </div>
+              </div>
+            </div>
+            <div class="w-full md:w-64 bg-slate-50 border border-slate-100 rounded-lg p-4 space-y-3 shrink-0">
+              <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Collegamenti rapidi</p>
+              <a href="#" class="block text-xs font-semibold text-blue-950 hover:underline">📚 Linee guida citazione dati</a>
+              <a href="#" class="block text-xs font-semibold text-blue-950 hover:underline">📡 Dataset scientifici recenti</a>
+              <a href="#" class="block text-xs font-semibold text-blue-950 hover:underline">🔐 Richiesta accesso dati riservati</a>
+            </div>
+          </div>
+
+          <!-- Impresa Info -->
+          <div id="info-impresa" class="profile-info hidden flex flex-col md:flex-row gap-8 items-start">
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-blue-900 mb-3 flex items-center">
+                <span class="mr-2">💼</span> Dati aperti per lo sviluppo di business
+              </h3>
+              <p class="text-slate-600 text-sm md:text-base mb-4 leading-relaxed">
+                Le imprese possono sfruttare i dati aperti per sviluppare nuovi servizi commerciali, analisi di mercato e soluzioni tecnologiche innovative nei settori dell'energia, dell'ambiente e della sostenibilità.
+              </p>
+              <div class="space-y-2 text-sm">
+                <div class="flex items-center text-slate-700">
+                  <span class="text-blue-500 mr-2">✔</span> Licenze permissive (CC-BY 4.0) che autorizzano l'uso commerciale.
+                </div>
+                <div class="flex items-center text-slate-700">
+                  <span class="text-blue-500 mr-2">✔</span> Feed dati e API JSON costantemente aggiornati sui mercati dell'energia.
+                </div>
+              </div>
+            </div>
+            <div class="w-full md:w-64 bg-slate-50 border border-slate-100 rounded-lg p-4 space-y-3 shrink-0">
+              <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Collegamenti rapidi</p>
+              <a href="#" class="block text-xs font-semibold text-blue-950 hover:underline">⚙ API d'integrazione in tempo reale</a>
+              <a href="#" class="block text-xs font-semibold text-blue-950 hover:underline">💡 Brevetti e trasferimento tecnologico</a>
+              <a href="#" class="block text-xs font-semibold text-blue-950 hover:underline">📊 Report energetici nazionali</a>
+            </div>
+          </div>
+
+          <!-- Cittadino Info -->
+          <div id="info-cittadino" class="profile-info hidden flex flex-col md:flex-row gap-8 items-start">
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-blue-900 mb-3 flex items-center">
+                <span class="mr-2">🌱</span> Trasparenza, clima e monitoraggio civico
+              </h3>
+              <p class="text-slate-600 text-sm md:text-base mb-4 leading-relaxed">
+                Ogni cittadino ha il diritto di monitorare le informazioni ambientali, i consumi energetici e i piani di sostenibilità del territorio. Esplora le metriche pubbliche e impara a conoscere i dati aperti.
+              </p>
+              <div class="space-y-2 text-sm">
+                <div class="flex items-center text-slate-700">
+                  <span class="text-blue-500 mr-2">✔</span> Dashboard visuali interattive di facile interpretazione.
+                </div>
+                <div class="flex items-center text-slate-700">
+                  <span class="text-blue-500 mr-2">✔</span> Report periodici sullo stato dell'ambiente e l'economia circolare.
+                </div>
+              </div>
+            </div>
+            <div class="w-full md:w-64 bg-slate-50 border border-slate-100 rounded-lg p-4 space-y-3 shrink-0">
+              <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Collegamenti rapidi</p>
+              <a href="#" class="block text-xs font-semibold text-blue-950 hover:underline">📖 Guida semplice agli Open Data</a>
+              <a href="#" class="block text-xs font-semibold text-blue-950 hover:underline">🌍 Dashboard ambientale</a>
+              <a href="#" class="block text-xs font-semibold text-blue-950 hover:underline">📝 Richiesta dati (accesso civico)</a>
+            </div>
+          </div>
+
+          <!-- PA Info -->
+          <div id="info-pa" class="profile-info hidden flex flex-col md:flex-row gap-8 items-start">
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-blue-900 mb-3 flex items-center">
+                <span class="mr-2">🏛</span> Interoperabilità e cooperazione tra enti
+              </h3>
+              <p class="text-slate-600 text-sm md:text-base mb-4 leading-relaxed">
+                Istituzioni e amministrazioni locali possono cooperare scambiando flussi informativi standardizzati, consultando dati territoriali e assicurando l'interoperabilità dei sistemi secondo le linee guida AgID.
+              </p>
+              <div class="space-y-2 text-sm">
+                <div class="flex items-center text-slate-700">
+                  <span class="text-blue-500 mr-2">✔</span> Piena conformità con le specifiche nazionali del catalogo dati (Dati.gov.it).
+                </div>
+                <div class="flex items-center text-slate-700">
+                  <span class="text-blue-500 mr-2">✔</span> Supporto a protocolli di intesa per la pianificazione energetica locale.
+                </div>
+              </div>
+            </div>
+            <div class="w-full md:w-64 bg-slate-50 border border-slate-100 rounded-lg p-4 space-y-3 shrink-0">
+              <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Collegamenti rapidi</p>
+              <a href="#" class="block text-xs font-semibold text-blue-950 hover:underline">📑 Linee guida AgID sull'interoperabilità</a>
+              <a href="#" class="block text-xs font-semibold text-blue-950 hover:underline">🗺 Portale cartografico territoriale</a>
+              <a href="#" class="block text-xs font-semibold text-blue-950 hover:underline">🤝 Richiesta accordi di condivisione</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sezione COME PARTECIPARE (Inspired by opendata.cityofnewyork.us) -->
+      <section class="bg-slate-200 border-y border-slate-200 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-12">
+            <h2 class="text-xs font-semibold uppercase tracking-wider text-blue-900 mb-2">Partecipazione Attiva</h2>
+            <p class="text-3xl font-extrabold text-slate-900 tracking-tight">Come puoi collaborare</p>
+            <p class="text-slate-500 mt-2 max-w-xl mx-auto text-sm">Crediamo nel valore dell'open data come bene comune. Scopri come esplorare i dati, proporre miglioramenti o fare i primi passi.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <!-- Card 1 -->
+            <div class="bg-slate-50 border border-slate-150 rounded-2xl p-6 text-center hover:shadow-md transition-all flex flex-col items-center">
+              <div class="h-16 w-16 bg-blue-100 text-blue-900 rounded-full flex items-center justify-center mb-5">
+                <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">Nuovo agli open data?</h3>
+              <p class="text-slate-500 text-xs md:text-sm leading-relaxed mb-4">
+                Non preoccuparti: offriamo guide didattiche, tutorial e glossari per aiutarti a capire cosa sono i dati aperti, come leggerli e come integrarli nella tua attività.
+              </p>
+              <a href="#" class="mt-auto text-sm font-semibold text-blue-900 hover:text-blue-700 flex items-center">
+                Inizia ad imparare <span class="ml-1">→</span>
+              </a>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-slate-50 border border-slate-150 rounded-2xl p-6 text-center hover:shadow-md transition-all flex flex-col items-center">
+              <div class="h-16 w-16 bg-blue-100 text-blue-900 rounded-full flex items-center justify-center mb-5">
+                <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">Mettiti in contatto</h3>
+              <p class="text-slate-500 text-xs md:text-sm leading-relaxed mb-4">
+                Vuoi suggerire un nuovo dataset? Hai riscontrato anomalie? Desideri proporre una collaborazione? Il team ENEA Open Data è sempre disponibile ad ascoltare le tue idee.
+              </p>
+              <a href="#" class="mt-auto text-sm font-semibold text-blue-900 hover:text-blue-700 flex items-center">
+                Scrivici un messaggio <span class="ml-1">→</span>
+              </a>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-slate-50 border border-slate-150 rounded-2xl p-6 text-center hover:shadow-md transition-all flex flex-col items-center">
+              <div class="h-16 w-16 bg-blue-100 text-blue-900 rounded-full flex items-center justify-center mb-5">
+                <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+                </svg>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">Immergiti nei dati</h3>
+              <p class="text-slate-500 text-xs md:text-sm leading-relaxed mb-4">
+                Sei già esperto? Accedi direttamente al catalogo avanzato, impara ad usare le nostre API CKAN ed effettua query complesse sui dataset territoriali ed energetici.
+              </p>
+              <a href="#" class="mt-auto text-sm font-semibold text-blue-900 hover:text-blue-700 flex items-center">
+                Esplora le API <span class="ml-1">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sezione PROGETTI (Inspired by opendata.cityofnewyork.us - "See how creators...") -->
+      <section id="projects" class="bg-gradient-to-r from-blue-900 to-indigo-950 px-4 sm:px-6 lg:px-8 py-16">
+        <!-- Content -->
+        <div class="wrapper"><!-- Actually unused, here just to match demo2 markup -->
+          <div class="header text-center mb-12 border border-slate-600/80">
+            <h2 class="text-xs font-semibold uppercase tracking-wider text-cyan-400 mb-2 font-mono">Esperienze e Ispirazione</h2>
+            <p class="text-3xl font-extrabold text-white tracking-tight">Progetti realizzati con i nostri dati</p>
+            <p class="text-blue-200 mt-2 max-w-xl mx-auto text-sm">Scopri come ricercatori e start-up stanno trasformando i dati grezzi di ENEA in app interattive e visualizzazioni di grande utilità.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <!-- Project 1 -->
+            <div class="bg-white rounded-2xl overflow-hidden border border-slate-400/80 hover:border-cyan-500/40 flex flex-col shadow-sm transition-all">
+              <div class="h-48 bg-gradient-to-br from-blue-500 to-indigo-600 relative p-6 text-white flex flex-col justify-end">
+                <span class="absolute top-4 left-4 bg-white/20 text-white font-mono text-[10px] tracking-wider px-2 py-1 rounded uppercase font-bold backdrop-blur-sm">Simulatore Energetico</span>
+                <h3 class="text-xl font-bold tracking-tight">Visualizzatore nazionale di efficienza edifici</h3>
+              </div>
+              <div class="p-6 flex-1 flex flex-col">
+                <p class="text-slate-600 text-xs md:text-sm leading-relaxed mb-4">
+                  Uno strumento interattivo che mappa le prestazioni energetiche degli immobili italiani aggregandole per comune e provincia, sviluppato per pianificazioni territoriali strategiche.
+                </p>
+                <div class="flex items-center gap-1.5 mt-auto text-slate-400 text-xs">
+                  <span>Creatore:</span> <strong class="text-slate-600 font-semibold">Università Sapienza</strong>
+                  <span class="mx-2">•</span>
+                  <span>Usa dati di:</span> <strong class="text-slate-600 font-semibold">SIAPE ENEA</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="bg-white rounded-2xl overflow-hidden border border-slate-400/80 hover:border-cyan-500/40 flex flex-col shadow-sm hover:shadow-md transition-all">
+              <div class="h-48 bg-gradient-to-br from-emerald-500 to-teal-600 relative p-6 text-white flex flex-col justify-end">
+                <span class="absolute top-4 left-4 bg-white/20 text-white font-mono text-[10px] tracking-wider px-2 py-1 rounded uppercase font-bold backdrop-blur-sm">Monitoraggio Climatico</span>
+                <h3 class="text-xl font-bold tracking-tight">Clima-radar: trend termici italiani</h3>
+              </div>
+              <div class="p-6 flex-1 flex flex-col">
+                <p class="text-slate-600 text-xs md:text-sm leading-relaxed mb-4">
+                  Sviluppato da una start-up ecologica, questo portale mette in relazione le emissioni regionali con i sensori di temperatura storici di ENEA, evidenziando le variazioni negli ultimi trent'anni.
+                </p>
+                <div class="flex items-center gap-1.5 mt-auto text-slate-400 text-xs">
+                  <span>Creatore:</span> <strong class="text-slate-600 font-semibold">EcoMetrics Srl</strong>
+                  <span class="mx-2">•</span>
+                  <span>Usa dati di:</span> <strong class="text-slate-600 font-semibold">C.R. Casaccia ENEA</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="action text-center mt-8 border border-slate-600/80">
+            <p class="text-blue-200 text-xs md:text-sm italic mb-4">Hai creato un progetto usando i nostri dati? Raccontacelo!</p>
+            <a href="#" class="inline-flex items-center justify-center border-2 border-cyan-500/50 hover:border-cyan-400 hover:text-cyan-300 text-cyan-400 font-semibold text-xs md:text-sm px-6 py-3 rounded-lg transition-all">
+              Proponi il tuo progetto
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sezione CATALOGO DATI (Inspired by data.austintexas.gov) -->
+      <section class="bg-slate-100 border-t border-slate-200 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-12">
+            <h2 class="text-xs font-semibold uppercase tracking-wider text-blue-900 mb-2">Esplorazione Strutturata</h2>
+            <p class="text-3xl font-extrabold text-slate-900 tracking-tight">Naviga per macro-categorie</p>
+            <p class="text-slate-500 mt-2 max-w-xl mx-auto text-sm">Organizziamo i nostri dataset secondo filtri standard del catalogo CKAN, permettendoti di isolare rapidamente i dati che ti interessano.</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            <!-- Gruppi -->
+            <div class="bg-white rounded-xl p-6 border border-slate-200 flex flex-col shadow-sm hover:shadow-md transition-all">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">01 / Gruppi</span>
+                <span class="bg-blue-50 text-blue-900 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full">12 Gruppi</span>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">AgID / Europa</h3>
+              <p class="text-slate-500 text-xs leading-relaxed mb-4">
+                Macro-categorie europee armonizzate AgID (es. Trasporti, Ambiente, Economia, Scienza e tecnologia).
+              </p>
+              <div class="mt-auto pt-3 border-t border-slate-100 space-y-1 text-xs">
+                <a href="#" class="block text-blue-900 hover:underline">📂 Ambiente</a>
+                <a href="#" class="block text-blue-900 hover:underline">📂 Energia</a>
+                <a href="#" class="block text-blue-900 hover:underline">📂 Scienza e tecnologia</a>
+              </div>
+            </div>
+
+            <!-- Tag -->
+            <div class="bg-white rounded-xl p-6 border border-slate-200 flex flex-col shadow-sm hover:shadow-md transition-all">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">02 / Tag</span>
+                <span class="bg-blue-50 text-blue-900 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full">140 Tag</span>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">Parole chiave</h3>
+              <p class="text-slate-500 text-xs leading-relaxed mb-4">
+                Trova dataset specifici associati a etichette popolari come fotovoltaico, emissioni, efficienza, rifiuti, o bilancio energetico.
+              </p>
+              <div class="mt-auto pt-3 border-t border-slate-100 flex flex-wrap gap-1.5">
+                <span class="bg-slate-100 text-slate-700 text-[10px] font-medium px-2 py-0.5 rounded">#solare</span>
+                <span class="bg-slate-100 text-slate-700 text-[10px] font-medium px-2 py-0.5 rounded">#cug</span>
+                <span class="bg-slate-100 text-slate-700 text-[10px] font-medium px-2 py-0.5 rounded">#emissioni</span>
+              </div>
+            </div>
+
+            <!-- Formati -->
+            <div class="bg-white rounded-xl p-6 border border-slate-200 flex flex-col shadow-sm hover:shadow-md transition-all">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">03 / Formati</span>
+                <span class="bg-blue-50 text-blue-900 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full">8 Formati</span>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">Tipologia file</h3>
+              <p class="text-slate-500 text-xs leading-relaxed mb-4">
+                Filtra i dati in base alle tue capacità tecnologiche. Scegli file tabulari, geografici, o API interattive.
+              </p>
+              <div class="mt-auto pt-3 border-t border-slate-100 flex flex-wrap gap-1.5">
+                <span class="bg-emerald-50 text-emerald-700 text-[10px] font-mono font-bold px-2 py-0.5 rounded">CSV</span>
+                <span class="bg-amber-50 text-amber-700 text-[10px] font-mono font-bold px-2 py-0.5 rounded">JSON</span>
+                <span class="bg-purple-50 text-purple-700 text-[10px] font-mono font-bold px-2 py-0.5 rounded">GeoJSON</span>
+                <span class="bg-blue-50 text-blue-700 text-[10px] font-mono font-bold px-2 py-0.5 rounded">RDF</span>
+              </div>
+            </div>
+
+            <!-- Temi -->
+            <div class="bg-white rounded-xl p-6 border border-slate-200 flex flex-col shadow-sm hover:shadow-md transition-all">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">04 / Sottotemi</span>
+                <span class="bg-blue-50 text-blue-900 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full">6 Temi</span>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">Settori tematici</h3>
+              <p class="text-slate-500 text-xs leading-relaxed mb-4">
+                Dataset raggruppati per divisione dipartimentale ENEA o area di ricerca (es. Clima, Ricerca, Scienze applicate).
+              </p>
+              <div class="mt-auto pt-3 border-t border-slate-100 space-y-1 text-xs">
+                <a href="#" class="block text-blue-900 hover:underline">📁 Organizzazione amministrativa</a>
+                <a href="#" class="block text-blue-900 hover:underline">📁 Clima</a>
+                <a href="#" class="block text-blue-900 hover:underline">📁 Energia dolce</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer Istituzionale -->
+    <footer class="bg-blue-950 text-white border-t border-blue-900 py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b border-blue-900/60">
+          <div>
+            <svg version="1.1" class="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 viewBox="0 0 1054.01 466.25" style="enable-background:new 0 0 1054.01 466.25;" xml:space="preserve">
+              <polygon style="fill:#FFFFFF;" points="751.35,310.72 836.37,310.72 724.82,182.96 724.82,362.42 492.9,362.42 492.46,361.91 336.19,182.96 
+                336.19,362.42 103.83,362.42 103.83,103.83 258.99,103.83 258.99,155.56 155.56,155.56 155.56,207.83 233.14,207.83 233.14,259.56 
+                155.56,259.56 155.56,310.72 284.46,310.72 284.46,103.83 335.75,103.83 336.19,104.34 492.46,283.29 492.46,103.83 647.62,103.83 
+                647.62,155.56 544.19,155.56 544.19,207.83 621.44,207.83 621.44,259.56 544.19,259.56 544.19,310.72 673.09,310.72 673.09,103.83 
+                724.38,103.83 724.82,104.34 905.03,310.72 950.18,362.42 751.35,362.42 "/>
+            </svg>
+            <p class="text-blue-300 text-xs leading-relaxed">
+              Agenzia nazionale per le nuove tecnologie, l'energia e lo sviluppo economico sostenibile. Realizziamo ricerche e sviluppiamo tecnologie innovative per un futuro a basse emissioni e sostenibile.
+            </p>
+          </div>
+          <div>
+            <h4 class="font-semibold text-sm tracking-wide text-blue-100 uppercase mb-4">Link Portale</h4>
+            <ul class="space-y-2 text-xs text-blue-300">
+              <li><a href="#" class="hover:underline">Dataset</a></li>
+              <li><a href="#" class="hover:underline">Gruppi</a></li>
+              <li><a href="#" class="hover:underline">Organizzazioni</a></li>
+              <li><a href="#" class="hover:underline">Note Legali & Privacy Policy</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold text-sm tracking-wide text-blue-100 uppercase mb-4">Contatti Redazione</h4>
+            <p class="text-blue-300 text-xs leading-relaxed">
+              Unità Relazioni e Comunicazione<br />
+              Lungotevere Thaon di Revel 76, 00196 Roma<br />
+              Email: <a href="mailto:info.opendata@enea.it" class="hover:underline text-blue-200">web.rel-prom@enea.it</a>
+            </p>
+          </div>
+        </div>
+        <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-blue-400">
+          <p>© 2026 ENEA - Tutti i diritti riservati. Portale sviluppato su tecnologia open source CKAN.</p>
+          <p class="mt-2 sm:mt-0">Licenza dati: <a href="https://creativecommons.org/licenses/by/4.0/deed.it" class="text-blue-200 underline">CC-BY 4.0</a></p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Script di Controllo per i Profili ("Sono un...") -->
+    <script>
+      function selectProfile(profileName) {
+        // Disattiva tutti i bottoni
+        const buttons = document.querySelectorAll('.profile-btn');
+        buttons.forEach(btn => {
+          btn.classList.remove('border-blue-600', 'bg-blue-50/20', 'shadow-md', 'border-2');
+          btn.classList.add('border-slate-200', 'bg-white', 'shadow-sm', 'border');
+          
+          // Trova il cerchio delle icone e ripristina i colori neutri
+          const iconContainer = btn.querySelector('.rounded-full');
+          if (iconContainer) {
+            iconContainer.classList.remove('bg-blue-50', 'text-blue-900');
+            iconContainer.classList.add('bg-slate-50', 'text-slate-600');
+          }
+          const text = btn.querySelector('span');
+          if (text) {
+            text.classList.remove('text-blue-900');
+            text.classList.add('text-slate-700');
+          }
+        });
+
+        // Attiva il bottone selezionato
+        const activeBtn = document.getElementById('btn-' + profileName);
+        if (activeBtn) {
+          activeBtn.classList.add('border-blue-600', 'border-2', 'shadow-md');
+          activeBtn.classList.remove('border-slate-200', 'border');
+          
+          const iconContainer = activeBtn.querySelector('.rounded-full');
+          if (iconContainer) {
+            iconContainer.classList.remove('bg-slate-50', 'text-slate-600');
+            iconContainer.classList.add('bg-blue-50', 'text-blue-900');
+          }
+          const text = activeBtn.querySelector('span');
+          if (text) {
+            text.classList.remove('text-slate-700');
+            text.classList.add('text-blue-900');
+          }
+        }
+
+        // Nascondi tutte le sezioni informative
+        const infos = document.querySelectorAll('.profile-info');
+        infos.forEach(info => {
+          info.classList.add('hidden');
+        });
+
+        // Mostra la sezione informativa selezionata
+        const activeInfo = document.getElementById('info-' + profileName);
+        if (activeInfo) {
+          activeInfo.classList.remove('hidden');
+        }
+      }
+    </script>
+  </body>
+</html>
